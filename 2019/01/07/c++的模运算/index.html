@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="c++的模运算我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。 模运算用mod来表示，对于a mod b可以表示为 a = qb + r,其中q表示商，b表示模数目且b!=0,那么余数r满足0&amp;lt;=|r|&amp;lt;|b|。 如果a和b都是自然数，那么r肯定是大于等于0且小于b的整数，如果a和b有一个是负数，那么r就不一定唯一。看下面这个例子： （-1）% 256：-1=（0）x 2">
+<meta name="description" content="浅谈c++中取模运算和取余运算我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。 对于整型a,b来说，取模运算或者取余运算的方法都是： 1.求整数商：q=a/b; 2.计算模或者余数：r=a-qxb; 求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/2019/01/07/c++的模运算/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="c++的模运算我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。 模运算用mod来表示，对于a mod b可以表示为 a = qb + r,其中q表示商，b表示模数目且b!=0,那么余数r满足0&amp;lt;=|r|&amp;lt;|b|。 如果a和b都是自然数，那么r肯定是大于等于0且小于b的整数，如果a和b有一个是负数，那么r就不一定唯一。看下面这个例子： （-1）% 256：-1=（0）x 2">
+<meta property="og:description" content="浅谈c++中取模运算和取余运算我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。 对于整型a,b来说，取模运算或者取余运算的方法都是： 1.求整数商：q=a/b; 2.计算模或者余数：r=a-qxb; 求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix(">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T08:00:20.912Z">
+<meta property="og:updated_time" content="2019-01-07T08:36:34.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="c++的模运算我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。 模运算用mod来表示，对于a mod b可以表示为 a = qb + r,其中q表示商，b表示模数目且b!=0,那么余数r满足0&amp;lt;=|r|&amp;lt;|b|。 如果a和b都是自然数，那么r肯定是大于等于0且小于b的整数，如果a和b有一个是负数，那么r就不一定唯一。看下面这个例子： （-1）% 256：-1=（0）x 2">
+<meta name="twitter:description" content="浅谈c++中取模运算和取余运算我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。 对于整型a,b来说，取模运算或者取余运算的方法都是： 1.求整数商：q=a/b; 2.计算模或者余数：r=a-qxb; 求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix(">
 
 
 
@@ -299,12 +299,16 @@
       
 
       
-        <h1 id="c-的模运算"><a href="#c-的模运算" class="headerlink" title="c++的模运算"></a>c++的模运算</h1><p>我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。</p>
-<p>模运算用mod来表示，对于a mod b可以表示为 a = qb + r,其中q表示商，b表示模数目且b!=0,那么余数r满足0&lt;=|r|&lt;|b|。</p>
-<p>如果a和b都是自然数，那么r肯定是大于等于0且小于b的整数，如果a和b有一个是负数，那么r就不一定唯一。看下面这个例子：</p>
-<p>（-1）% 256：-1=（0）x 256-1，余数是-1；-1=(-1) x 256+255,余数是255</p>
-<p>从上面这个例子可以看出：两个余数的绝对值的和等于模数的绝对值。</p>
-<p>那么问题来了，两个整数的模运算竟然有两个结果，那么我们到底如何做选择呢？</p>
+        <h1 id="浅谈c-中取模运算和取余运算"><a href="#浅谈c-中取模运算和取余运算" class="headerlink" title="浅谈c++中取模运算和取余运算"></a>浅谈c++中取模运算和取余运算</h1><p>我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。</p>
+<p>对于整型a,b来说，取模运算或者取余运算的方法都是：</p>
+<p>1.求整数商：q=a/b;</p>
+<p>2.计算模或者余数：r=a-qxb;</p>
+<p>求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方向舍入(floor()函数).</p>
+<p>下面来看一个例子就清楚了，计算-7 mod 4,那么a=-7;b=4;</p>
+<p>1.q=-2(取模运算)，q=-1(取余运算)；</p>
+<p>2.r=1(取模运算),r=-3(取余运算)</p>
+<p>总结一下：当a和b符号一致时，求模运算和求余运算所得q的值一致，因此结果一致；</p>
+<p>当符号不一致时，求模运算和符号和b一致，求余运算的符号和a一致。另外有个值得注意的地方：各个环境下%运算符的含义不同，比如c,c++,java是取余运算，而python是取模运算。</p>
 
       
     </div>
@@ -460,7 +464,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c-的模运算"><span class="nav-number">1.</span> <span class="nav-text">c++的模运算</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#浅谈c-中取模运算和取余运算"><span class="nav-number">1.</span> <span class="nav-text">浅谈c++中取模运算和取余运算</span></a></li></ol></div>
             
 
           </div>
