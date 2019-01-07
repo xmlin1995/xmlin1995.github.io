@@ -229,135 +229,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/c++的模运算/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/07/c++的模运算/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-07T15:41:49+08:00">
-                2019-01-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="浅谈c-中取模运算和取余运算"><a href="#浅谈c-中取模运算和取余运算" class="headerlink" title="浅谈c++中取模运算和取余运算"></a>浅谈c++中取模运算和取余运算</h1><p>我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。</p>
-<p>对于整型a,b来说，取模运算或者取余运算的方法都是：</p>
-<p>1.求整数商：q=a/b;</p>
-<p>2.计算模或者余数：r=a-q*b;</p>
-<p>求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方向舍入(floor()函数).</p>
-<p>下面来看一个例子就清楚了，计算-7 mod 4,那么a=-7;b=4;</p>
-<p>1.q=-2(取模运算)，q=-1(取余运算)；</p>
-<p>2.r=1(取模运算),r=-3(取余运算)</p>
-<p>总结一下：当a和b符号一致时，求模运算和求余运算所得q的值一致，因此结果一致；</p>
-<p>当符号不一致时，求模运算和符号和b一致，求余运算的符号和a一致。另外有个值得注意的地方：各个环境下%运算符的含义不同，比如c,c++,java是取余运算，而python是取模运算。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/my-second-post/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -430,6 +301,135 @@
         
           
             
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/c++的模运算/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/07/c++的模运算/" itemprop="url">浅谈c++中取模运算和取余运算</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-07T12:35:00+08:00">
+                2019-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。</p>
+<p>对于整型a,b来说，取模运算或者取余运算的方法都是：</p>
+<p>1.求整数商：q=a/b;</p>
+<p>2.计算模或者余数：r=a-q*b;</p>
+<p>求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方向舍入(floor()函数).</p>
+<p>下面来看一个例子就清楚了，计算-7 mod 4,那么a=-7;b=4;</p>
+<p>1.q=-2(取模运算)，q=-1(取余运算)；</p>
+<p>2.r=1(取模运算),r=-3(取余运算)</p>
+<p>总结一下：当a和b符号一致时，求模运算和求余运算所得q的值一致，因此结果一致；</p>
+<p>当符号不一致时，求模运算和符号和b一致，求余运算的符号和a一致。另外有个值得注意的地方：各个环境下%运算符的含义不同，比如c,c++,java是取余运算，而python是取模运算。</p>
+
           
         
       
