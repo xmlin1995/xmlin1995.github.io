@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>浅谈c++中取模运算和取余运算 | 林贤敏</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。 对于整型a,b来说，取模运算或者取余运算的方法都是： 1.求整数商：q=a/b; 2.计算模或者余数：r=a-q*b; 求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方">
+<meta name="keywords" content="这是我第一个博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈c++中取模运算和取余运算">
+<meta property="og:url" content="http://yoursite.com/2019/01/07/c++的模运算/index.html">
+<meta property="og:site_name" content="林贤敏">
+<meta property="og:description" content="我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。 对于整型a,b来说，取模运算或者取余运算的方法都是： 1.求整数商：q=a/b; 2.计算模或者余数：r=a-q*b; 求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-07T09:03:42.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈c++中取模运算和取余运算">
+<meta name="twitter:description" content="我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。 对于整型a,b来说，取模运算或者取余运算的方法都是： 1.求整数商：q=a/b; 2.计算模或者余数：r=a-q*b; 求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方">
+  
+    <link rel="alternate" href="/atom.xml" title="林贤敏" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">林贤敏</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c++的模运算" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/07/c++的模运算/" class="article-date">
+  <time datetime="2019-01-07T04:35:00.000Z" itemprop="datePublished">2019-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浅谈c++中取模运算和取余运算
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。</p>
+<p>对于整型a,b来说，取模运算或者取余运算的方法都是：</p>
+<p>1.求整数商：q=a/b;</p>
+<p>2.计算模或者余数：r=a-q*b;</p>
+<p>求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方向舍入(floor()函数).</p>
+<p>下面来看一个例子就清楚了，计算-7 mod 4,那么a=-7;b=4;</p>
+<p>1.q=-2(取模运算)，q=-1(取余运算)；</p>
+<p>2.r=1(取模运算),r=-3(取余运算)</p>
+<p>总结一下：当a和b符号一致时，求模运算和求余运算所得q的值一致，因此结果一致；</p>
+<p>当符号不一致时，求模运算和符号和b一致，求余运算的符号和a一致。另外有个值得注意的地方：各个环境下%运算符的含义不同，比如c,c++,java是取余运算，而python是取模运算。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/07/c++的模运算/" data-id="cjqmf0z4a0000r0vt4t18aivw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/这是我第一个博客/">这是我第一个博客</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/07/有符号数和无符号数转化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          有符号数和无符号数转化
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/这是我第一个博客/">这是我第一个博客</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/这是我第一个博客/" style="font-size: 10px;">这是我第一个博客</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/07/有符号数和无符号数转化/">有符号数和无符号数转化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/07/c++的模运算/">浅谈c++中取模运算和取余运算</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 林贤敏<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
