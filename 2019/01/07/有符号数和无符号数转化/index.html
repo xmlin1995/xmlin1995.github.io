@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 原码、反码、补码 简单总结一下这三者之间的关系，不具体展开。  （1）正数的原码、反码和补码一致。 （2）如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。">
+<meta name="description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 一：原码、反码、补码简单总结一下这三者之间的关系，不具体展开。  正数的原码、反码和补码一致。  如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。    二：有符号数转化为无符号数记住一个规则即可：保持二进制位值不变">
 <meta property="og:type" content="article">
-<meta property="og:title" content="有符号数和无符号数转化">
+<meta property="og:title" content="c&#x2F;c++中有符号数转化为无符号数">
 <meta property="og:url" content="http://yoursite.com/2019/01/07/有符号数和无符号数转化/index.html">
 <meta property="og:site_name" content="林贤敏">
-<meta property="og:description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 原码、反码、补码 简单总结一下这三者之间的关系，不具体展开。  （1）正数的原码、反码和补码一致。 （2）如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。">
+<meta property="og:description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 一：原码、反码、补码简单总结一下这三者之间的关系，不具体展开。  正数的原码、反码和补码一致。  如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。    二：有符号数转化为无符号数记住一个规则即可：保持二进制位值不变">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-08T05:58:52.781Z">
+<meta property="og:image" content="c:/Users/xmlin/AppData/Roaming/Typora/typora-user-images/1546929167642.png">
+<meta property="og:image" content="c:/Users/xmlin/AppData/Roaming/Typora/typora-user-images/1546929850915.png">
+<meta property="og:updated_time" content="2019-01-08T06:46:10.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有符号数和无符号数转化">
-<meta name="twitter:description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 原码、反码、补码 简单总结一下这三者之间的关系，不具体展开。  （1）正数的原码、反码和补码一致。 （2）如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。">
+<meta name="twitter:title" content="c&#x2F;c++中有符号数转化为无符号数">
+<meta name="twitter:description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 一：原码、反码、补码简单总结一下这三者之间的关系，不具体展开。  正数的原码、反码和补码一致。  如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。    二：有符号数转化为无符号数记住一个规则即可：保持二进制位值不变">
+<meta name="twitter:image" content="c:/Users/xmlin/AppData/Roaming/Typora/typora-user-images/1546929167642.png">
 
 
 
@@ -125,7 +128,7 @@
 
 
 
-  <title>有符号数和无符号数转化 | 林贤敏</title>
+  <title>c/c++中有符号数转化为无符号数 | 林贤敏</title>
   
 
 
@@ -249,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">有符号数和无符号数转化</h1>
+          <h1 class="post-title" itemprop="name headline">c/c++中有符号数转化为无符号数</h1>
         
 
         <div class="post-meta">
@@ -300,11 +303,38 @@
 
       
         <p>在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码</p>
-<h1 id="原码、反码、补码"><a href="#原码、反码、补码" class="headerlink" title="原码、反码、补码"></a>原码、反码、补码</h1><blockquote>
-<p>简单总结一下这三者之间的关系，不具体展开。</p>
+<h1 id="一：原码、反码、补码"><a href="#一：原码、反码、补码" class="headerlink" title="一：原码、反码、补码"></a>一：原码、反码、补码</h1><p>简单总结一下这三者之间的关系，不具体展开。</p>
+<ul>
+<li><p>正数的原码、反码和补码一致。</p>
+</li>
+<li><p>如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。</p>
+</li>
+</ul>
+<hr>
+<h1 id="二：有符号数转化为无符号数"><a href="#二：有符号数转化为无符号数" class="headerlink" title="二：有符号数转化为无符号数"></a>二：有符号数转化为无符号数</h1><p>记住一个规则即可：<strong>保持二进制位值不变，只改变解释位的方式。</strong></p>
+<p>怎么去理解这条规则呢？不管三七二十一，上来就把int型整数写成补码形式（<strong>再次强调，计算机中所有的数都是以补码形式存储的</strong>）</p>
+<ul>
+<li><p>如果是正数，那么转化前后是一样的</p>
+</li>
+<li><p>如果是负数，有符号数转无符号数时将补码的最高为不再看成符号位而是值，再将补码转成原码即是答案。</p>
+</li>
+</ul>
+<p>下面看几个例子：</p>
+<p><img src="C:\Users\xmlin\AppData\Roaming\Typora\typora-user-images\1546929167642.png" alt="1546929167642"></p>
+<p>上面这个程序输出的结果是</p>
+<blockquote>
+<p>4294967293</p>
 </blockquote>
-<p>（1）正数的原码、反码和补码一致。</p>
-<p>（2）如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。</p>
+<p>在64bit的机器上，int型是32bit，所以-3的原码是10000000000000000000000000000011;反码是11111111111111111111111111111100;补码是11111111111111111111111111111101;接下来按照无符号位来解释这个补码，也就是2^32-3=4294967293</p>
+<ul>
+<li>尽管我们不会故意把一个无符号对象赋值一个负数，但是实际上却可能（特别容易）写出这样的代码。例如，当一个算术表达式中既有无符号数也有int值时，<strong>那个int值就会被转化成无符号数</strong>。</li>
+</ul>
+<p><img src="C:\Users\xmlin\AppData\Roaming\Typora\typora-user-images\1546929850915.png" alt="1546929850915"></p>
+<p>上面这个程序输出结果是</p>
+<blockquote>
+<p>4294967264</p>
+</blockquote>
+<p>相加前将-42转化为无符号数，再做加法。</p>
 
       
     </div>
@@ -460,7 +490,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原码、反码、补码"><span class="nav-number">1.</span> <span class="nav-text">原码、反码、补码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一：原码、反码、补码"><span class="nav-number">1.</span> <span class="nav-text">一：原码、反码、补码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二：有符号数转化为无符号数"><span class="nav-number">2.</span> <span class="nav-text">二：有符号数转化为无符号数</span></a></li></ol></div>
             
 
           </div>
