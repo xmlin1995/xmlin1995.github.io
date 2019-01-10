@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="Technology Space">
 <meta property="og:description" content="从作用域角度来看全局变量：作用于整个程序，如果一个程序有多个源文件(即多个.cpp文件)，那么全局变量在所有的源文件中都是可见的，但是有一点要注意，在一个文件中定义的全局变量，如果要在另外的文件中使用，则必须用extern关键字再次申明一下。 全局静态变量：作用于定义它的这个源文件，如果一个程序有多个源文件，则全局静态变量在其它源文件中不可见，所以如果一个程序只有一个源文件，那么全局变量和全局静态">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T11:10:16.252Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/01/10/FOTOJg.png">
+<meta property="og:updated_time" content="2019-01-10T11:14:45.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全局变量、全局静态变量、局部静态变量、局部变量的区别和联系">
 <meta name="twitter:description" content="从作用域角度来看全局变量：作用于整个程序，如果一个程序有多个源文件(即多个.cpp文件)，那么全局变量在所有的源文件中都是可见的，但是有一点要注意，在一个文件中定义的全局变量，如果要在另外的文件中使用，则必须用extern关键字再次申明一下。 全局静态变量：作用于定义它的这个源文件，如果一个程序有多个源文件，则全局静态变量在其它源文件中不可见，所以如果一个程序只有一个源文件，那么全局变量和全局静态">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/01/10/FOTOJg.png">
 
 
 
@@ -306,7 +308,7 @@
 <p>局部变量：也具有局部作用域，它在程序运行期间不是一直存在，函数的一次调用结束后，变量就被撤销，所占内存也被撤回。</p>
 <h1 id="从内存分配来看"><a href="#从内存分配来看" class="headerlink" title="从内存分配来看"></a>从内存分配来看</h1><p>全局变量、全局静态变量、局部静态变量都存在静态存储区，而局部变量在栈空间</p>
 <p>除了静态内存和栈内存，每个程序还拥有一个内存池。这部分存储空间被称作<strong>自由空间</strong>或<strong>堆</strong>(heap)。堆空间用来存储动态分配的对象(例如new的对象)。静态内存和栈内存有编译器自动释放空间，而堆空间必须手动释放。</p>
-<p>![image] (<a href="https://s2.ax1x.com/2019/01/10/FOTOJg.png" target="_blank" rel="noopener">https://s2.ax1x.com/2019/01/10/FOTOJg.png</a>)</p>
+<p><img src="https://s2.ax1x.com/2019/01/10/FOTOJg.png" alt="image"></p>
 
       
     </div>
