@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 一：原码、反码、补码简单总结一下这三者之间的关系，不具体展开。  正数的原码、反码和补码一致。  如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。    二：有符号数转化为无符号数记住一个规则即可：保持二进制位值不变">
+<meta name="description" content="从作用域角度来看全局变量：作用于整个程序，如果一个程序有多个源文件(即多个.cpp文件)，那么全局变量在所有的源文件中都是可见的，但是有一点要注意，在一个文件中定义的全局变量，如果要在另外的文件中使用，则必须用extern关键字再次申明一下。 全局静态变量：作用于定义它的这个源文件，如果一个程序有多个源文件，则全局静态变量在其它源文件中不可见，所以如果一个程序只有一个源文件，那么全局变量和全局静态">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c&#x2F;c++中有符号数转化为无符号数">
-<meta property="og:url" content="http://yoursite.com/2019/01/07/有符号数和无符号数转化/index.html">
+<meta property="og:title" content="全局变量、全局静态变量、局部静态变量、局部变量的区别和联系">
+<meta property="og:url" content="http://yoursite.com/2019/01/10/全局变量、全局静态变量、局部静态变量、局部变量的区别和联系/index.html">
 <meta property="og:site_name" content="Technology Space">
-<meta property="og:description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 一：原码、反码、补码简单总结一下这三者之间的关系，不具体展开。  正数的原码、反码和补码一致。  如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。    二：有符号数转化为无符号数记住一个规则即可：保持二进制位值不变">
+<meta property="og:description" content="从作用域角度来看全局变量：作用于整个程序，如果一个程序有多个源文件(即多个.cpp文件)，那么全局变量在所有的源文件中都是可见的，但是有一点要注意，在一个文件中定义的全局变量，如果要在另外的文件中使用，则必须用extern关键字再次申明一下。 全局静态变量：作用于定义它的这个源文件，如果一个程序有多个源文件，则全局静态变量在其它源文件中不可见，所以如果一个程序只有一个源文件，那么全局变量和全局静态">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s2.ax1x.com/2019/01/08/Fqfkgf.png">
-<meta property="og:image" content="https://s2.ax1x.com/2019/01/08/FqfuUs.png">
-<meta property="og:updated_time" content="2019-01-10T04:09:46.398Z">
+<meta property="og:updated_time" content="2019-01-10T11:08:35.308Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="c&#x2F;c++中有符号数转化为无符号数">
-<meta name="twitter:description" content="在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 一：原码、反码、补码简单总结一下这三者之间的关系，不具体展开。  正数的原码、反码和补码一致。  如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。    二：有符号数转化为无符号数记住一个规则即可：保持二进制位值不变">
-<meta name="twitter:image" content="https://s2.ax1x.com/2019/01/08/Fqfkgf.png">
+<meta name="twitter:title" content="全局变量、全局静态变量、局部静态变量、局部变量的区别和联系">
+<meta name="twitter:description" content="从作用域角度来看全局变量：作用于整个程序，如果一个程序有多个源文件(即多个.cpp文件)，那么全局变量在所有的源文件中都是可见的，但是有一点要注意，在一个文件中定义的全局变量，如果要在另外的文件中使用，则必须用extern关键字再次申明一下。 全局静态变量：作用于定义它的这个源文件，如果一个程序有多个源文件，则全局静态变量在其它源文件中不可见，所以如果一个程序只有一个源文件，那么全局变量和全局静态">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/07/有符号数和无符号数转化/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/10/全局变量、全局静态变量、局部静态变量、局部变量的区别和联系/">
 
 
 
 
 
-  <title>c/c++中有符号数转化为无符号数 | Technology Space</title>
+  <title>全局变量、全局静态变量、局部静态变量、局部变量的区别和联系 | Technology Space</title>
   
 
 
@@ -236,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/07/有符号数和无符号数转化/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/全局变量、全局静态变量、局部静态变量、局部变量的区别和联系/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="林贤敏">
@@ -253,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">c/c++中有符号数转化为无符号数</h1>
+          <h1 class="post-title" itemprop="name headline">全局变量、全局静态变量、局部静态变量、局部变量的区别和联系</h1>
         
 
         <div class="post-meta">
@@ -265,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-07T22:01:06+08:00">
-                2019-01-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T17:06:51+08:00">
+                2019-01-10
               </time>
             
 
@@ -303,39 +300,13 @@
       
 
       
-        <p>在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码</p>
-<h1 id="一：原码、反码、补码"><a href="#一：原码、反码、补码" class="headerlink" title="一：原码、反码、补码"></a>一：原码、反码、补码</h1><p>简单总结一下这三者之间的关系，不具体展开。</p>
-<ul>
-<li><p>正数的原码、反码和补码一致。</p>
-</li>
-<li><p>如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。</p>
-</li>
-</ul>
-<hr>
-<h1 id="二：有符号数转化为无符号数"><a href="#二：有符号数转化为无符号数" class="headerlink" title="二：有符号数转化为无符号数"></a>二：有符号数转化为无符号数</h1><p>记住一个规则即可：<strong>保持二进制位值不变，只改变解释位的方式。</strong></p>
-<p>怎么去理解这条规则呢？不管三七二十一，上来就把int型整数写成补码形式（<strong>再次强调，计算机中所有的数都是以补码形式存储的</strong>）</p>
-<ul>
-<li><p>如果是正数，那么转化前后是一样的</p>
-</li>
-<li><p>如果是负数，有符号数转无符号数时将补码的最高为不再看成符号位而是值，再将补码转成原码即是答案。</p>
-</li>
-</ul>
-<p>下面看几个例子：</p>
-<p><img src="https://s2.ax1x.com/2019/01/08/Fqfkgf.png" alt="1546929167642"></p>
-<p>上面这个程序输出的结果是</p>
-<blockquote>
-<p>4294967293</p>
-</blockquote>
-<p>在64bit的机器上，int型是32bit，所以-3的原码是10000000000000000000000000000011;反码是11111111111111111111111111111100;补码是11111111111111111111111111111101;接下来按照无符号位来解释这个补码，也就是2^32-3=4294967293</p>
-<ul>
-<li>尽管我们不会故意把一个无符号对象赋值一个负数，但是实际上却可能（特别容易）写出这样的代码。例如，当一个算术表达式中既有无符号数也有int值时，<strong>那个int值就会被转化成无符号数</strong>。</li>
-</ul>
-<p><img src="https://s2.ax1x.com/2019/01/08/FqfuUs.png" alt="1546929850915"></p>
-<p>上面这个程序输出结果是</p>
-<blockquote>
-<p>4294967264</p>
-</blockquote>
-<p>相加前将-42转化为无符号数，再做加法。</p>
+        <h1 id="从作用域角度来看"><a href="#从作用域角度来看" class="headerlink" title="从作用域角度来看"></a>从作用域角度来看</h1><p>全局变量：作用于整个程序，如果一个程序有多个源文件(即多个.cpp文件)，那么全局变量在所有的源文件中都是可见的，但是有一点要注意，在一个文件中定义的全局变量，如果要在另外的文件中使用，则必须用extern关键字再次申明一下。</p>
+<p>全局静态变量：作用于定义它的这个源文件，如果一个程序有多个源文件，则全局静态变量在其它源文件中不可见，所以如果一个程序只有一个源文件，那么全局变量和全局静态变量的作用域是一样的。</p>
+<p>局部静态变量：具有局部作用域，他只被初始化一次，自从初始化直到程序结束一直存在，即它的生命周期程序运行就存在，程序结束就结束。</p>
+<p>局部变量：也具有局部作用域，它在程序运行期间不是一直存在，函数的一次调用结束后，变量就被撤销，所占内存也被撤回。</p>
+<h1 id="从内存分配来看"><a href="#从内存分配来看" class="headerlink" title="从内存分配来看"></a>从内存分配来看</h1><p>全局变量、全局静态变量、局部静态变量都存在静态存储区，而局部变量在栈空间</p>
+<p>除了静态内存和栈内存，每个程序还拥有一个内存池。这部分存储空间被称作<strong>自由空间</strong>或<strong>堆</strong>(heap)。堆空间用来存储动态分配的对象(例如new的对象)。静态内存和栈内存有编译器自动释放空间，而堆空间必须手动释放。</p>
+<p>![avatar] (<a href="https://s2.ax1x.com/2019/01/10/FOTOJg.png" target="_blank" rel="noopener">https://s2.ax1x.com/2019/01/10/FOTOJg.png</a>)</p>
 
       
     </div>
@@ -366,8 +337,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/07/c++的模运算/" rel="next" title="浅谈c++中取模运算和取余运算">
-                <i class="fa fa-chevron-left"></i> 浅谈c++中取模运算和取余运算
+              <a href="/2019/01/07/有符号数和无符号数转化/" rel="next" title="c/c++中有符号数转化为无符号数">
+                <i class="fa fa-chevron-left"></i> c/c++中有符号数转化为无符号数
               </a>
             
           </div>
@@ -375,10 +346,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/10/全局变量、全局静态变量、局部静态变量、局部变量的区别和联系/" rel="prev" title="全局变量、全局静态变量、局部静态变量、局部变量的区别和联系">
-                全局变量、全局静态变量、局部静态变量、局部变量的区别和联系 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -537,7 +504,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一：原码、反码、补码"><span class="nav-number">1.</span> <span class="nav-text">一：原码、反码、补码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二：有符号数转化为无符号数"><span class="nav-number">2.</span> <span class="nav-text">二：有符号数转化为无符号数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从作用域角度来看"><span class="nav-number">1.</span> <span class="nav-text">从作用域角度来看</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从内存分配来看"><span class="nav-number">2.</span> <span class="nav-text">从内存分配来看</span></a></li></ol></div>
             
 
           </div>
