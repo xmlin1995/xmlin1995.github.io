@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="写代码是一种艺术，甚于蒙娜丽莎的微笑">
+<meta name="description" content="0.前言当我们的机器上同时安装多个版本的Python的时候，使用起来很不方便，尤其是每个工程需要的Python版本不同，依赖的包也不一样，这时候如果安装了virtualenv的话，就很方便了，它是独立于系统的一个虚拟环境，在这虚拟环境里面安装的各种依赖包都不会影响系统里的环境。 一.安装virtualenv pip install virtualenv  二.使用假定我们要开发一个新的项目，需要一">
 <meta name="keywords" content="环境配置,虚拟环境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux下安装virtualenv以及virtualenvwrapper">
 <meta property="og:url" content="http://yoursite.com/2019/01/14/linux下安装virtualenv以及virtualenvwrapper/index.html">
 <meta property="og:site_name" content="Technology Space">
-<meta property="og:description" content="写代码是一种艺术，甚于蒙娜丽莎的微笑">
+<meta property="og:description" content="0.前言当我们的机器上同时安装多个版本的Python的时候，使用起来很不方便，尤其是每个工程需要的Python版本不同，依赖的包也不一样，这时候如果安装了virtualenv的话，就很方便了，它是独立于系统的一个虚拟环境，在这虚拟环境里面安装的各种依赖包都不会影响系统里的环境。 一.安装virtualenv pip install virtualenv  二.使用假定我们要开发一个新的项目，需要一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-14T11:15:53.182Z">
+<meta property="og:updated_time" content="2019-01-14T12:01:21.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux下安装virtualenv以及virtualenvwrapper">
-<meta name="twitter:description" content="写代码是一种艺术，甚于蒙娜丽莎的微笑">
+<meta name="twitter:description" content="0.前言当我们的机器上同时安装多个版本的Python的时候，使用起来很不方便，尤其是每个工程需要的Python版本不同，依赖的包也不一样，这时候如果安装了virtualenv的话，就很方便了，它是独立于系统的一个虚拟环境，在这虚拟环境里面安装的各种依赖包都不会影响系统里的环境。 一.安装virtualenv pip install virtualenv  二.使用假定我们要开发一个新的项目，需要一">
 
 
 
@@ -342,7 +342,75 @@
       
 
       
-        
+        <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h1><p>当我们的机器上同时安装多个版本的Python的时候，使用起来很不方便，尤其是每个工程需要的Python版本不同，依赖的包也不一样，这时候如果安装了virtualenv的话，就很方便了，它是独立于系统的一个虚拟环境，在这虚拟环境里面安装的各种依赖包都不会影响系统里的环境。</p>
+<h1 id="一-安装virtualenv"><a href="#一-安装virtualenv" class="headerlink" title="一.安装virtualenv"></a>一.安装virtualenv</h1><blockquote>
+<p>pip install virtualenv</p>
+</blockquote>
+<h1 id="二-使用"><a href="#二-使用" class="headerlink" title="二.使用"></a>二.使用</h1><p>假定我们要开发一个新的项目，需要一套独立的Python运行环境，可以这么做：</p>
+<ul>
+<li><p>创建目录</p>
+<blockquote>
+<p>mkdir myproject</p>
+<p>cd myproject</p>
+</blockquote>
+</li>
+<li><p>创建一个独立的Python运行环境，命名为env</p>
+<blockquote>
+<p>virtualenv –python=python3.5 –system-site-packages env</p>
+</blockquote>
+<p>–python 参数用来指定虚拟环境使用哪个版本的解释器</p>
+<p>–system-site-packages 参数会将系统中的python的第三方库复制过来。如果不想把系统中的第三方库复制过来，可以用–no-site-packages来代替–system-site-packages，这样就会得到一个不带任何第三方库的“干净”的python运行环境。新建的python环境被放到当前的目录下的env目录。有了这个env，可以用source进入该环境</p>
+<blockquote>
+<p>source /env/bin/activate</p>
+</blockquote>
+<p>这时命令提示符变了，有个(env)前缀，表示当前环境是一个名为env的python环境。</p>
+<p>在env环境下，用pip安装的包被安装到env环境下，系统python环境不受任何影响。</p>
+</li>
+<li><p>退出当前的env环境</p>
+<blockquote>
+<p>deactivate</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="三-安装virtualenvwrapper"><a href="#三-安装virtualenvwrapper" class="headerlink" title="三.安装virtualenvwrapper"></a>三.安装virtualenvwrapper</h1><p>virtualenvwrapper是virtualenv的扩展包，用于更方便的管理虚拟环境，可以做：</p>
+<p>1.将所有虚拟环境整合到一个目录下</p>
+<p>2.管理（新增，删除，复制）虚拟环境</p>
+<p>3.快速切换虚拟环境</p>
+<ol start="4">
+<li>。。。</li>
+</ol>
+<ul>
+<li><p>安装</p>
+<blockquote>
+<p>pip install virtualenvwrapper</p>
+</blockquote>
+</li>
+<li><p>创建目录用来存放虚拟环境</p>
+<blockquote>
+<p>mkdir ~/.virtualenvs</p>
+</blockquote>
+</li>
+<li><p>在.bashrc中添加如下环境变量</p>
+<blockquote>
+<p>export WORKON_HOME=~/.virtualenvs</p>
+<p>source /home/lxm/.local/bin/virtualenvwrapper.sh</p>
+</blockquote>
+</li>
+<li><p>是的添加进去的环境变量生效</p>
+<blockquote>
+<p>source ~/.bashrc</p>
+</blockquote>
+</li>
+</ul>
+<p>到目前为止，virtualenvwrapper就可以使用了</p>
+<h1 id="四-virtualenvwrapper常见命令"><a href="#四-virtualenvwrapper常见命令" class="headerlink" title="四. virtualenvwrapper常见命令"></a>四. virtualenvwrapper常见命令</h1><blockquote>
+<p>workon: 列出虚拟环境列表</p>
+<p>mkvirtualenv: 新建虚拟环境</p>
+<p>workon [虚拟环境名称]: 切换虚拟环境</p>
+<p>rmvirtualenv[虚拟环境名称]: 删除虚拟环境</p>
+<p>deavtivate: 离开虚拟环境</p>
+</blockquote>
+
       
     </div>
     
@@ -461,8 +529,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -540,6 +617,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-前言"><span class="nav-number">1.</span> <span class="nav-text">0.前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一-安装virtualenv"><span class="nav-number">2.</span> <span class="nav-text">一.安装virtualenv</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-使用"><span class="nav-number">3.</span> <span class="nav-text">二.使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-安装virtualenvwrapper"><span class="nav-number">4.</span> <span class="nav-text">三.安装virtualenvwrapper</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-virtualenvwrapper常见命令"><span class="nav-number">5.</span> <span class="nav-text">四. virtualenvwrapper常见命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
