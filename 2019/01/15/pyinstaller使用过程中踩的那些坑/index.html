@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/01/15/Fzl8vq.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/01/15/FzlHqf.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/01/15/Fz1CLV.jpg">
-<meta property="og:updated_time" content="2019-01-15T05:44:21.382Z">
+<meta property="og:updated_time" content="2019-01-15T05:50:10.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pyinstaller使用过程中踩的那些坑">
 <meta name="twitter:description" content="有时候我们需要将自己写的python脚本编译成可执行文件，这样一来，我们可以在没有python解释器的系统中来运行这个python脚本，是不是很方便呢？下面就来记录下本人在使用pyinstaller过程中遇到的那些坑，纯属记录，对pyinstaller的原理不进行具体阐述。 首先来说明以下需求：基于tensorflow框架，实现LeNet-5网络去训练MNIST数据集并做测试；然后将训练和测试脚">
@@ -357,13 +357,14 @@
 </blockquote>
 <p>编译好之后，会多处几个文件：</p>
 <p><img src="https://s2.ax1x.com/2019/01/15/FzlHqf.jpg" alt="image"></p>
-<p>在dist目录下就会出现我们要的.exe文件，点击运行，稍等片刻，但是会报错no modual named “tensorflow.contrib”</p>
+<h1 id="坑一"><a href="#坑一" class="headerlink" title="坑一"></a>坑一</h1><p>在dist目录下就会出现我们要的.exe文件，点击运行，稍等片刻，但是会报错no modual named “tensorflow.contrib”</p>
 <p><img src="https://s2.ax1x.com/2019/01/15/Fz1CLV.jpg" alt="image"></p>
 <p>解决方案是：打开lenet5_train.spec文件将hiddenimports=[]改成hiddenimports=[‘tensorflow.contrib’],然后在命令行重新编译这个.spec文件：</p>
 <blockquote>
 <p>pyinstaller lenet5_train.spec</p>
 </blockquote>
 <p>ps:基于上面这个错误和解决方案，我自己大胆的做了个预测（没有实践，不知道是不是酱紫）：在编译成功的前提下，也就是能够得到.exe文件，如果运行这个.exe报no modual named xxx的错的话，就把这个modual加入到hiddenimports里面，多个modual用逗号隔开。实践才是检验真理的唯一标准，赶紧去试试吧！！！</p>
+<h1 id="坑二"><a href="#坑二" class="headerlink" title="坑二"></a>坑二</h1><p>运行.exe时说在某某路径下找不到该文件，解决方案是将脚本中的相对路径改成绝对路径。</p>
 
       
     </div>
@@ -481,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -560,6 +570,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#坑一"><span class="nav-number">1.</span> <span class="nav-text">坑一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#坑二"><span class="nav-number">2.</span> <span class="nav-text">坑二</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
