@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[pyinstaller使用过程中踩的那些坑]]></title>
+    <url>%2F2019%2F01%2F15%2Fpyinstaller%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%B8%A9%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91%2F</url>
+    <content type="text"><![CDATA[有时候我们需要将自己写的python脚本编译成可执行文件，这样一来，我们可以在没有python解释器的系统中来运行这个python脚本，是不是很方便呢？下面就来记录下本人在使用pyinstaller过程中遇到的那些坑，纯属记录，对pyinstaller的原理不进行具体阐述。 首先来说明以下需求：基于tensorflow框架，实现LeNet-5网络去训练MNIST数据集并做测试；然后将训练和测试脚本在windows上编译成.exe的可执行程序。 可想而知，在这过程中肯定会用到一些常见的第三方库，例如：tensorflow、numpy、cv2等等。 假定已经安装好pyinstaller，并且完成源代码的编写。下面是源代码目录： 命令行进入到该目录下并输入： pyinstaller –onefile –nowindowed lenet5_train.py 编译好之后，会多处几个文件： 坑一在dist目录下就会出现我们要的.exe文件，点击运行，稍等片刻，但是会报错no modual named “tensorflow.contrib” 解决方案是：打开lenet5_train.spec文件将hiddenimports=[]改成hiddenimports=[‘tensorflow.contrib’],然后在命令行重新编译这个.spec文件： pyinstaller lenet5_train.spec ps:基于上面这个错误和解决方案，我自己大胆的做了个预测（没有实践，不知道是不是酱紫）：在编译成功的前提下，也就是能够得到.exe文件，如果运行这个.exe报no modual named xxx的错的话，就把这个modual加入到hiddenimports里面，多个modual用逗号隔开。实践才是检验真理的唯一标准，赶紧去试试吧！！！ 坑二运行.exe时说在某某路径下找不到该文件，解决方案是将脚本中的相对路径改成绝对路径。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>pyinstaller</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[深入浅出const关键字对c++成员函数的修饰]]></title>
+    <url>%2F2019%2F01%2F15%2F%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAconst%E5%85%B3%E9%94%AE%E5%AD%97%E5%AF%B9c-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E7%9A%84%E4%BF%AE%E9%A5%B0%2F</url>
+    <content type="text"><![CDATA[const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。 1.对函数参数的修饰 const只能用来修饰输入型参数。输出型参数不能用const来修饰。(关于输入、输出型参数，详见本文末) 如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。 如果输入的形参采用“值传递”，函数将产生临时变量，复制该参数的值并且压入函数栈。函数中使用该参数时，访问的时函数栈中临时变量的值，原变量无需保护，所以不要加const修饰。 基本变量类型的参数作为“值传递”的输入参数，无需采用引用。自定义变量类型（class类型，struct类型）参数作为“值传递“的输入参数，最好采用”const+引用“格式，即void func(const Student &amp;s)。原因是自定义变量类型作为值传递的时候，涉及创建临时变量，构造，复制，析构，这些过程很耗时间。 ​ 从函数栈的基本原理来考虑。我们知道，函数在被调用时，会为创建各个实参创建临时变量并将其压入函数栈。如果是基本变量类型，则压入函数栈的临时变量中存储的是实参的副本；如果是自定义变量类型，则会在堆上创建该类型实例，复制该参数到堆上，然后将堆上该实例的地址压入函数栈；如果是指针，则会将指针地址的副本压入函数栈。 ​ 也就是说，函数栈上要么保存的是一个基本类型参数的副本，要么是个顶层指针。对于函数栈上保存的参数，实参的副本可以作为一个普通的局部变量，是可以修改值的，而对于指针变量，其可以视为顶层指针，本身的值不可以修改，但它指向的值可以修改。 ​ 所以，对于基本变量类型，函数内部操作的是函数栈上的副本，不会对原值产生影响，对于类类型（非指针输入性参数），操作的也是函数栈上的地址指向的实例副本，同样不会对原值产生影响；而对于指针，函数内部虽然改变不了指针变量保存的指针值（该指针为顶层指针），但该指针却指向的是原值的地址，故而能修改原值。 ​ 对于引用， a). 引用不是对象，只是变量的一个别名，引用指向原变量的地址，不会进行新的内存分配和变量拷贝； b). 引用申明后必须马上初始化； c). 引用一经定义，不能改变其值，也就是不能再作为其它变量的引用；d). 通过引用可以完全操作原变量。 ​ 可以看出，当占空间很大的变量作为实参传入函数时，很适合引用传递。因为用引用传递时，只是传递变量本身的一个别名，不会进行新变量的内存分配，构造，赋值，析构等操作。 ​ 如果函数中不允许改变该实参，那么就应在引用参数上加const修饰。 ​ 基于上面的考虑。const修饰形参时，只需要修改指针类型和引用类型即可（虽然不是强制，但是对输入型指针或者引用参数用const修饰应该成为一种习惯）。同时，这也说明一个编程时应该养成的习惯，对于输入型参数，应该在函数起始位置定义一个局部变量接受该输入型参数，而不是直接使用。 2.对返回值的修饰这个应用比较少。大部分返回值采用的时“值传递”。如果将返回值修饰为const，那么接收返回值的变量也必须定义为const。 3.对this指针的修饰我们知道，c++成员函数在编译的时候，会传入一个this指针，指向实例本身，默认情况下，this的类型是指向类类型非常量版本的常量指针(顶层指针)。例如，有一个类Studen，那么this的类型是Student *const; 即this指针指向实例本身并且不可修改，但可以通过this指针修改其指向的成员变量。在成员函数内部访问成员变量var，实际上是如下形式访问的：this-&gt;var。如果我们设计一个成员函数时，不想让其修改成员变量，那么就应该将this指针定义为底层指针。c++定义的方式就是在函数的参数列表后加上const，即：void func(…) const; 4.总结以下是const成员函数注意的几点： const对象只能访问const成员函数,而非const对象可以访问任意的成员函数,包括const成员函数。即对于class Student, 有 const Student s1;那么s1只能访问Student的const成员函数。而对于Student s2; s2可以访问任何成员函数。 const对象的成员变量不可以修改。 mutable修饰的成员变量，在任何情况下都可以修改。也就是说，const成员函数也可以修改mutable修饰的成员变量。c++很shit的地方就是mutable和friendly这样的特性，很操蛋。 const成员函数可以访问const成员变量和非const成员变量，但不能修改任何变量。检查发生在编译时。 非const成员函数可以访问非const对象的非const数据成员、const数据成员，但不可以访问const对象的任意数据成员。 const成员函数只是用于非静态成员函数，不能用于静态成员函数。 const成员函数的const修饰不仅在函数声明中要加（包括内联函数），在类外定义出也要加。 作为一种良好的编程风格，在声明一个成员函数时，若该成员函数并不对数据成员进行修改操作，应尽可能将该成员函数声明为const 成员函数。 输入、输出型参数一般来说，函数的输入部分就是函数的参数，输出部分就是返回值，问题是如果函数的参数可以有很多个，而返回值只能有一个，这就会让我们无法让一个函数返回多个值。现实编程中，一个函数需要返回多个值是非常普遍的，通常的做法是用参数来返回。如果这个参数是用来做输入的，也叫做输入型参数，用来做输出的就叫做输出型参数。]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[安装cuda和cudnn]]></title>
+    <url>%2F2019%2F01%2F14%2F%E5%AE%89%E8%A3%85cuda%E5%92%8Ccudnn%2F</url>
+    <content type="text"><![CDATA[服务器上在自己的目录下面(即:没有root权限)安装cuda。 在nvidia官网下载对应的版本 在自己的目录下建立一个文件夹（我的路径是：/home/lxm/.local/cuda-8.0/）存放上面下载好的文件cuda_8.0.44_linux.run。然后shell进入当前目录（/home/lxm/.local/cuda-8.0/），首先运行 export PERL5LIB=. ​ 再运行 chmod a+x cuda_8.0.44_linux.run 运行 sh /home/lxm/.local/cuda-8.0/cuda_8.0.44_linux.run –tmpdir=/home/lxm/.local/cuda-8.0/temp/ –override 这里加了–tmpdir主要是直接运行”sh /home/lxm/.local/cuda-8.0/cuda_8.0.44_linux.run”会提示空间不足的错误。执行后会有一系列提示让你确认，非常非常非常非常关键的地方是是否安装361这个低版本的驱动 只在是否安装toolkit那步填y其它都是n 安装完毕后，再声明一下环境变量，并将其写入到 ~/.bash_profile 的尾部:export LD_LIBRARY_PATH=/home/lxm/.local/cuda-8.0/lib64:$LD_LIBRARY_PATH 将cudnn复制到cuda里面： ​ 1.cp /home/lxm/.local/cuda/include/cudnn.h /home/lxm/.local/cuda-8.0/include/ ​ 2.cp /home/lxm/.local/cuda/lib64/libcudnn* /home/lxm/.local/cuda-8.0/lib64/ ​ 更新软连接： ​ 1.删除 /home/lxm/.local/cuda-8.0/lib64/下libcudnn.so 和libcudnn.so.6 ​ ​ 2.命令行进入当前目录（/home/lxm/.local/cuda-8.0/lib64/）：先运行 ln -s libcudnn.so.6.0.21 libcudnn.so.6再运行ln -s libcudnn.so.6 libcudnn.so]]></content>
+      <categories>
+        <category>环境配置</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux下安装virtualenv以及virtualenvwrapper]]></title>
+    <url>%2F2019%2F01%2F14%2Flinux%E4%B8%8B%E5%AE%89%E8%A3%85virtualenv%E4%BB%A5%E5%8F%8Avirtualenvwrapper%2F</url>
+    <content type="text"><![CDATA[0.前言当我们的机器上同时安装多个版本的Python的时候，使用起来很不方便，尤其是每个工程需要的Python版本不同，依赖的包也不一样，这时候如果安装了virtualenv的话，就很方便了，它是独立于系统的一个虚拟环境，在这虚拟环境里面安装的各种依赖包都不会影响系统里的环境。 一.安装virtualenv pip install virtualenv 二.使用假定我们要开发一个新的项目，需要一套独立的Python运行环境，可以这么做： 创建目录 mkdir myproject cd myproject 创建一个独立的Python运行环境，命名为env virtualenv –python=python3.5 –system-site-packages env –python 参数用来指定虚拟环境使用哪个版本的解释器 –system-site-packages 参数会将系统中的python的第三方库复制过来。如果不想把系统中的第三方库复制过来，可以用–no-site-packages来代替–system-site-packages，这样就会得到一个不带任何第三方库的“干净”的python运行环境。新建的python环境被放到当前的目录下的env目录。有了这个env，可以用source进入该环境 source /env/bin/activate 这时命令提示符变了，有个(env)前缀，表示当前环境是一个名为env的python环境。 在env环境下，用pip安装的包被安装到env环境下，系统python环境不受任何影响。 退出当前的env环境 deactivate 三.安装virtualenvwrappervirtualenvwrapper是virtualenv的扩展包，用于更方便的管理虚拟环境，可以做： 1.将所有虚拟环境整合到一个目录下 2.管理（新增，删除，复制）虚拟环境 3.快速切换虚拟环境 。。。 安装 pip install virtualenvwrapper 创建目录用来存放虚拟环境 mkdir ~/.virtualenvs 在.bashrc中添加如下环境变量 export WORKON_HOME=~/.virtualenvs source /home/lxm/.local/bin/virtualenvwrapper.sh 是的添加进去的环境变量生效 source ~/.bashrc 到目前为止，virtualenvwrapper就可以使用了 四. virtualenvwrapper常见命令 workon: 列出虚拟环境列表 mkvirtualenv: 新建虚拟环境 workon [虚拟环境名称]: 切换虚拟环境 rmvirtualenv[虚拟环境名称]: 删除虚拟环境 deavtivate: 离开虚拟环境]]></content>
+      <categories>
+        <category>环境配置</category>
+      </categories>
+      <tags>
+        <tag>环境配置</tag>
+        <tag>虚拟环境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[spring安装和配置教程]]></title>
+    <url>%2F2019%2F01%2F11%2Fspring%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[1.去官网下载对应版本的安装包(http://repo.spring.io/libs-release-local/org/springframework/spring/) 2.打开eclipse-》help-》install new software-》add-》archive 选择spring安装包]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>安装教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[全局变量、全局静态变量、局部静态变量、局部变量的区别和联系]]></title>
+    <url>%2F2019%2F01%2F10%2F%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E3%80%81%E5%85%A8%E5%B1%80%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E3%80%81%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E3%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB%2F</url>
+    <content type="text"><![CDATA[从作用域角度来看全局变量：作用于整个程序，如果一个程序有多个源文件(即多个.cpp文件)，那么全局变量在所有的源文件中都是可见的，但是有一点要注意，在一个文件中定义的全局变量，如果要在另外的文件中使用，则必须用extern关键字再次申明一下。 全局静态变量：作用于定义它的这个源文件，如果一个程序有多个源文件，则全局静态变量在其它源文件中不可见，所以如果一个程序只有一个源文件，那么全局变量和全局静态变量的作用域是一样的。 局部静态变量：具有局部作用域，他只被初始化一次，自从初始化直到程序结束一直存在，即它的生命周期程序运行就存在，程序结束就结束。 局部变量：也具有局部作用域，它在程序运行期间不是一直存在，函数的一次调用结束后，变量就被撤销，所占内存也被撤回。 从内存分配来看全局变量、全局静态变量、局部静态变量都存在静态存储区，而局部变量在栈空间 除了静态内存和栈内存，每个程序还拥有一个内存池。这部分存储空间被称作自由空间或堆(heap)。堆空间用来存储动态分配的对象(例如new的对象)。静态内存和栈内存由编译器自动释放空间，而堆空间必须手动释放。]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[c/c++中有符号数转化为无符号数]]></title>
+    <url>%2F2019%2F01%2F07%2F%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E8%BD%AC%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[在讲有符号数和无符号数转化之前，先来回顾下什么是原码、反码、补码 一：原码、反码、补码简单总结一下这三者之间的关系，不具体展开。 正数的原码、反码和补码一致。 如果一个数是负数，它的原码：最高为是符号为（0表示正数，1表述负数），其余位是其绝对值的二进制形式；反码：原码符号位不变，其余位取反；补码：反码符号位不变，然后+1。 二：有符号数转化为无符号数记住一个规则即可：保持二进制位值不变，只改变解释位的方式。 怎么去理解这条规则呢？不管三七二十一，上来就把int型整数写成补码形式（再次强调，计算机中所有的数都是以补码形式存储的） 如果是正数，那么转化前后是一样的 如果是负数，有符号数转无符号数时将补码的最高为不再看成符号位而是值，再将补码转成原码即是答案。 下面看几个例子： 上面这个程序输出的结果是 4294967293 在64bit的机器上，int型是32bit，所以-3的原码是10000000000000000000000000000011;反码是11111111111111111111111111111100;补码是11111111111111111111111111111101;接下来按照无符号位来解释这个补码，也就是2^32-3=4294967293 尽管我们不会故意把一个无符号对象赋值一个负数，但是实际上却可能（特别容易）写出这样的代码。例如，当一个算术表达式中既有无符号数也有int值时，那个int值就会被转化成无符号数。 上面这个程序输出结果是 4294967264 相加前将-42转化为无符号数，再做加法。]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[浅谈c++中取模运算和取余运算]]></title>
+    <url>%2F2019%2F01%2F07%2Fc%2B%2B%E7%9A%84%E6%A8%A1%E8%BF%90%E7%AE%97%2F</url>
+    <content type="text"><![CDATA[我们先抛开具体的开发语言不谈，先谈谈在数学里，什么叫做模运算。在数学里，取模运算和取余运算两个概念有重叠的部分但又不完全一致。主要区别在于对负整数进行除法运算时操作不同。 对于整型a,b来说，取模运算或者取余运算的方法都是： 1.求整数商：q=a/b; 2.计算模或者余数：r=a-q*b; 求模运算和求余运算不同之处在于第一步：取余运算在取q时，向0方向舍入（fix()函数）；而取模运算向负无穷方向舍入(floor()函数). 下面来看一个例子就清楚了，计算-7 mod 4,那么a=-7;b=4; 1.q=-2(取模运算)，q=-1(取余运算)； 2.r=1(取模运算),r=-3(取余运算) 总结一下：当a和b符号一致时，求模运算和求余运算所得q的值一致，因此结果一致； 当符号不一致时，求模运算和符号和b一致，求余运算的符号和a一致。另外有个值得注意的地方：各个环境下%运算符的含义不同，比如c,c++,java是取余运算，而python是取模运算。]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+</search>
