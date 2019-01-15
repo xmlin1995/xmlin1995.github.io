@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。 1.对函数参数的修饰 如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。 如果输入的形参采用“值传递”，函数将产生临时变量，复制该参数的值并且压入函数栈。函数中使用该参数时，访问的时函数栈中临时变量的值，原变量无需保护，所以不要加co">
+<meta name="description" content="const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。 1.对函数参数的修饰 const只能用来修饰输入型参数。输出型参数不能用const来修饰。(关于输入、输出型参数，详见本文末) 如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。 如果输入的形参采用“值传递”，函数将产生临时变量，复制">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出const关键字对c++成员函数的修饰">
 <meta property="og:url" content="http://yoursite.com/2019/01/15/深入浅出const关键字对c-成员函数的修饰/index.html">
 <meta property="og:site_name" content="Technology Space">
-<meta property="og:description" content="const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。 1.对函数参数的修饰 如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。 如果输入的形参采用“值传递”，函数将产生临时变量，复制该参数的值并且压入函数栈。函数中使用该参数时，访问的时函数栈中临时变量的值，原变量无需保护，所以不要加co">
+<meta property="og:description" content="const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。 1.对函数参数的修饰 const只能用来修饰输入型参数。输出型参数不能用const来修饰。(关于输入、输出型参数，详见本文末) 如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。 如果输入的形参采用“值传递”，函数将产生临时变量，复制">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-15T02:13:36.680Z">
+<meta property="og:updated_time" content="2019-01-15T03:25:40.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出const关键字对c++成员函数的修饰">
-<meta name="twitter:description" content="const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。 1.对函数参数的修饰 如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。 如果输入的形参采用“值传递”，函数将产生临时变量，复制该参数的值并且压入函数栈。函数中使用该参数时，访问的时函数栈中临时变量的值，原变量无需保护，所以不要加co">
+<meta name="twitter:description" content="const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。 1.对函数参数的修饰 const只能用来修饰输入型参数。输出型参数不能用const来修饰。(关于输入、输出型参数，详见本文末) 如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。 如果输入的形参采用“值传递”，函数将产生临时变量，复制">
 
 
 
@@ -344,12 +344,33 @@
       
         <p>const对c++成员函数的修饰分为三种：1.修饰参数 2.修饰返回值 3.修饰this指针。下面来简单的谈谈相关知识点。</p>
 <h1 id="1-对函数参数的修饰"><a href="#1-对函数参数的修饰" class="headerlink" title="1.对函数参数的修饰"></a>1.对函数参数的修饰</h1><ul>
+<li>const只能用来修饰输入型参数。输出型参数不能用const来修饰。(关于输入、输出型参数，详见本文末)</li>
 <li>如果传入的形参采用“指针传递”，那么加const修饰可以防止意外地改动该指针，起到保护作用。</li>
 <li>如果输入的形参采用“值传递”，函数将产生临时变量，复制该参数的值并且压入函数栈。函数中使用该参数时，访问的时函数栈中临时变量的值，原变量无需保护，所以不要加const修饰。</li>
-<li>基本变量类型的参数作为“值传递”的输入参数，无需采用引用。自定义变量类型（class类型，struct类型）参数作为“值传递“的输入参数，最好采用”const+引用“格式，即void func(const Student &amp;s)。原因是自定义变量类型作为值传递的时候，涉及创建临时变量，构造，复制，析构，这些过程很耗时间。<pre><code>* dg
-* 
-</code></pre></li>
+<li>基本变量类型的参数作为“值传递”的输入参数，无需采用引用。自定义变量类型（class类型，struct类型）参数作为“值传递“的输入参数，最好采用”const+引用“格式，即void func(const Student &amp;s)。原因是自定义变量类型作为值传递的时候，涉及创建临时变量，构造，复制，析构，这些过程很耗时间。</li>
 </ul>
+<p>​    从函数栈的基本原理来考虑。我们知道，函数在被调用时，会为创建各个实参创建临时变量并将其压入函数栈。如果是基本变量类型，则压入函数栈的临时变量中存储的是实参的副本；如果是自定义变量类型，则会在堆上创建该类型实例，复制该参数到堆上，然后将堆上该实例的地址压入函数栈；如果是指针，则会将指针地址的副本压入函数栈。</p>
+<p>​    也就是说，函数栈上要么保存的是一个基本类型参数的副本，要么是个顶层指针。对于函数栈上保存的参数，实参的副本可以作为一个普通的局部变量，是可以修改值的，而对于指针变量，其可以视为顶层指针，本身的值不可以修改，但它指向的值可以修改。</p>
+<p>​    所以，对于基本变量类型，函数内部操作的是函数栈上的副本，不会对原值产生影响，对于类类型（非指针输入性参数），操作的也是函数栈上的地址指向的实例副本，同样不会对原值产生影响；而对于指针，函数内部虽然改变不了指针变量保存的指针值（该指针为顶层指针），但该指针却指向的是原值的地址，故而能修改原值。</p>
+<p>​    对于引用， a). 引用不是对象，只是变量的一个别名，引用指向原变量的地址，不会进行新的内存分配和变量拷贝； b). 引用申明后必须马上初始化； c). 引用一经定义，不能改变其值，也就是不能再作为其它变量的引用；d). 通过引用可以完全操作原变量。</p>
+<p>​    可以看出，当占空间很大的变量作为实参传入函数时，很适合引用传递。因为用引用传递时，只是传递变量本身的一个别名，不会进行新变量的内存分配，构造，赋值，析构等操作。</p>
+<p>​    如果函数中不允许改变该实参，那么就应在引用参数上加const修饰。</p>
+<p>​    基于上面的考虑。const修饰形参时，只需要修改指针类型和引用类型即可（虽然不是强制，但是对输入型指针或者引用参数用const修饰应该成为一种习惯）。同时，这也说明一个编程时应该养成的习惯，对于输入型参数，应该在函数起始位置定义一个局部变量接受该输入型参数，而不是直接使用。</p>
+<h1 id="2-对返回值的修饰"><a href="#2-对返回值的修饰" class="headerlink" title="2.对返回值的修饰"></a>2.对返回值的修饰</h1><p>这个应用比较少。大部分返回值采用的时“值传递”。如果将返回值修饰为const，那么接收返回值的变量也必须定义为const。</p>
+<h1 id="3-对this指针的修饰"><a href="#3-对this指针的修饰" class="headerlink" title="3.对this指针的修饰"></a>3.对this指针的修饰</h1><p>我们知道，c++成员函数在编译的时候，会传入一个this指针，指向实例本身，默认情况下，this的类型是指向类类型非常量版本的常量指针(顶层指针)。例如，有一个类Studen，那么this的类型是Student *const; 即this指针指向实例本身并且不可修改，但可以通过this指针修改其指向的成员变量。在成员函数内部访问成员变量var，实际上是如下形式访问的：this-&gt;var。如果我们设计一个成员函数时，不想让其修改成员变量，那么就应该将this指针定义为底层指针。c++定义的方式就是在函数的参数列表后加上const，即：void func(…) const;</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h1><p>以下是const成员函数注意的几点：</p>
+<ul>
+<li>const对象只能访问const成员函数,而非const对象可以访问任意的成员函数,包括const成员函数。即对于class Student, 有 const Student s1;那么s1只能访问Student的const成员函数。而对于Student s2; s2可以访问任何成员函数。</li>
+<li>const对象的成员变量不可以修改。</li>
+<li>mutable修饰的成员变量，在任何情况下都可以修改。也就是说，const成员函数也可以修改mutable修饰的成员变量。c++很shit的地方就是mutable和friendly这样的特性，很操蛋。</li>
+<li>const成员函数可以访问const成员变量和非const成员变量，但不能修改任何变量。检查发生在编译时。</li>
+<li>非const成员函数可以访问非const对象的非const数据成员、const数据成员，但不可以访问const对象的任意数据成员。</li>
+<li>const成员函数只是用于非静态成员函数，不能用于静态成员函数。</li>
+<li>const成员函数的const修饰不仅在函数声明中要加（包括内联函数），在类外定义出也要加。</li>
+<li>作为一种良好的编程风格，在声明一个成员函数时，若该成员函数并不对数据成员进行修改操作，应尽可能将该成员函数声明为const 成员函数。</li>
+</ul>
+<hr>
+<h1 id="输入、输出型参数"><a href="#输入、输出型参数" class="headerlink" title="输入、输出型参数"></a>输入、输出型参数</h1><p>一般来说，函数的输入部分就是函数的参数，输出部分就是返回值，问题是如果函数的参数可以有很多个，而返回值只能有一个，这就会让我们无法让一个函数返回多个值。现实编程中，一个函数需要返回多个值是非常普遍的，通常的做法是用参数来返回。如果这个参数是用来做输入的，也叫做输入型参数，用来做输出的就叫做输出型参数</p>
 
       
     </div>
@@ -565,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-对函数参数的修饰"><span class="nav-number">1.</span> <span class="nav-text">1.对函数参数的修饰</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-对函数参数的修饰"><span class="nav-number">1.</span> <span class="nav-text">1.对函数参数的修饰</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-对返回值的修饰"><span class="nav-number">2.</span> <span class="nav-text">2.对返回值的修饰</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-对this指针的修饰"><span class="nav-number">3.</span> <span class="nav-text">3.对this指针的修饰</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4.总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入、输出型参数"><span class="nav-number">5.</span> <span class="nav-text">输入、输出型参数</span></a></li></ol></div>
             
 
           </div>
