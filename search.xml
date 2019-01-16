@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[c++的抽象类、虚函数、虚基类和java的抽象类、接口]]></title>
+    <url>%2F2019%2F01%2F16%2Fc-%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E8%99%9A%E5%87%BD%E6%95%B0%E3%80%81%E8%99%9A%E5%9F%BA%E7%B1%BB%E5%92%8Cjava%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8E%A5%E5%8F%A3%2F</url>
+    <content type="text"><![CDATA[先做一个简单的整理，后面再更新 c++虚函数 == java普通函数 c++纯虚函数 == java抽象函数 c++抽象类 == java抽象类 c++虚基类（全部是纯虚函数） == java接口 未完待续。。。]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[pyinstaller使用过程中踩的那些坑]]></title>
     <url>%2F2019%2F01%2F15%2Fpyinstaller%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%B8%A9%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91%2F</url>
     <content type="text"><![CDATA[有时候我们需要将自己写的python脚本编译成可执行文件，这样一来，我们可以在没有python解释器的系统中来运行这个python脚本，是不是很方便呢？下面就来记录下本人在使用pyinstaller过程中遇到的那些坑，纯属记录，对pyinstaller的原理不进行具体阐述。 首先来说明以下需求：基于tensorflow框架，实现LeNet-5网络去训练MNIST数据集并做测试；然后将训练和测试脚本在windows上编译成.exe的可执行程序。 可想而知，在这过程中肯定会用到一些常见的第三方库，例如：tensorflow、numpy、cv2等等。 假定已经安装好pyinstaller，并且完成源代码的编写。下面是源代码目录： 命令行进入到该目录下并输入： pyinstaller –onefile –nowindowed lenet5_train.py 编译好之后，会多处几个文件： 坑一在dist目录下就会出现我们要的.exe文件，点击运行，稍等片刻，但是会报错no modual named “tensorflow.contrib” 解决方案是：打开lenet5_train.spec文件将hiddenimports=[]改成hiddenimports=[‘tensorflow.contrib’],然后在命令行重新编译这个.spec文件： pyinstaller lenet5_train.spec ps:基于上面这个错误和解决方案，我自己大胆的做了个预测（没有实践，不知道是不是酱紫）：在编译成功的前提下，也就是能够得到.exe文件，如果运行这个.exe报no modual named xxx的错的话，就把这个modual加入到hiddenimports里面，多个modual用逗号隔开。实践才是检验真理的唯一标准，赶紧去试试吧！！！ 坑二运行.exe时说在某某路径下找不到该文件，解决方案是将脚本中的相对路径改成绝对路径。]]></content>
