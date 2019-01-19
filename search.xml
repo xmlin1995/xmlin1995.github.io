@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[slim库]]></title>
+    <url>%2F2019%2F01%2F19%2Fslim%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[slim.arg_scope原理分析slim.arg_scope的实现使用了装饰器和上下文管理器. 弄清楚这两个语法才能看明白它的源码. 使用方式slim.arg_scope常用于为tensorflow里的layer函数提供默认值以使构建模型的代码更加紧凑苗条(slim): importtensorflow as tfslim = tf.contrib.slimwith slim.arg_scope(​ [layers.conv2d],​ padding=’SAME’,​ initializer=xavier_initializer(),​ regularizer=l2_regularizer(0.05)):​ net = slim.conv2d(net, 256, [5, 5]) 并不是所有的方法都能用arg_scope设置默认参数, 只有用@slim.add_arg_scope修饰过的方法才能使用arg_scope. 所以, 要使slim.arg_scope正常运行起来, 需要两个步骤: 用@add_arg_scope修饰目标函数 用witharg_scope(…) 设置默认参数. 下面举一个列子： import tensorflow as tf slim = tf.contrib.slim @slim.add_arg_scope def fun(parm1,parm2): ​ print(parm1) ​ print(parm2) with slim.arg_scope([fun], parm1=’SAME’,parm2=’VALID’) as arg_sc: ​ fun() 运行上面代码结果：SAME VALID]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>slim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[np.array()和np.asarray()的区别]]></title>
     <url>%2F2019%2F01%2F18%2Fnp-array-%E5%92%8Cnp-asarray-%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
     <content type="text"><![CDATA[array和asarray都可以将结构数据转化为ndarray,主要区别是当源数据已经是ndarray类型时，array依然会拷贝一份，而asarray不会；当源数据不是ndarray类型时，两者没有区别(都会拷贝一份)。 例一： import numpy as np a=[[1,1,1],[1,1,1]]b=np.array(a)c=np.asarray(a) a[1][1]=2 print(a)print(b)print(c) 输出： [[1,1,1],[1,2,1]] [[1 1 1] [1 1 1]] [[1 1 1] [1 1 1]] 例二： import numpy as np a=np.zeros([2,3])b=np.array(a)c=np.asarray(a) a[1][1]=2 print(a)print(b)print(c) 输出: [[0. 0. 0.] [0. 2. 0.]] [[0. 0. 0.] [0. 0. 0.]] [[0. 0. 0.] [0. 2. 0.]]]]></content>
