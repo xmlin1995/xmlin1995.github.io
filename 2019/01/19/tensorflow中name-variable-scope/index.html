@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="tensorflow,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="写代码是一种艺术，甚于蒙娜丽莎的微笑">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Technology Space">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta name="description" content="在tensorflow中,有两个scope,一个是name_scope一个是variable_scope,这两个scope到底有什么区别呢? 先看第一个程序:  with tf.name_scope(“hello”) as name_scope: ​    arr1 = tf.get_variable(“arr1”, shape=[2,10],dtype=tf.float32) ​    prin">
+<meta name="keywords" content="tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow中name&amp;variable_scope">
+<meta property="og:url" content="http://yoursite.com/2019/01/19/tensorflow中name-variable-scope/index.html">
 <meta property="og:site_name" content="Technology Space">
-<meta property="og:description" content="写代码是一种艺术，甚于蒙娜丽莎的微笑">
+<meta property="og:description" content="在tensorflow中,有两个scope,一个是name_scope一个是variable_scope,这两个scope到底有什么区别呢? 先看第一个程序:  with tf.name_scope(“hello”) as name_scope: ​    arr1 = tf.get_variable(“arr1”, shape=[2,10],dtype=tf.float32) ​    prin">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-19T13:33:54.621Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Technology Space">
-<meta name="twitter:description" content="写代码是一种艺术，甚于蒙娜丽莎的微笑">
+<meta name="twitter:title" content="tensorflow中name&amp;variable_scope">
+<meta name="twitter:description" content="在tensorflow中,有两个scope,一个是name_scope一个是variable_scope,这两个scope到底有什么区别呢? 先看第一个程序:  with tf.name_scope(“hello”) as name_scope: ​    arr1 = tf.get_variable(“arr1”, shape=[2,10],dtype=tf.float32) ​    prin">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/19/tensorflow中name-variable-scope/">
 
 
 
 
 
-  <title>归档 | Technology Space</title>
+  <title>tensorflow中name&variable_scope | Technology Space</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -269,146 +271,294 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/tensorflow中name-variable-scope/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="林贤敏">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Technology Space">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">tensorflow中name&variable_scope</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-19T21:25:32+08:00">
+                2019-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/10/全局变量、全局静态变量、局部静态变量、局部变量的区别和联系/" itemprop="url">
-              
-                <span itemprop="name">全局变量、全局静态变量、局部静态变量、局部变量的区别和联系</span>
-              
-            </a>
-        
-      </h2>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-10T17:06:51+08:00" content="2019-01-10">
-          01-10
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/07/有符号数和无符号数转化/" itemprop="url">
-              
-                <span itemprop="name">c/c++中有符号数转化为无符号数</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-07T22:01:06+08:00" content="2019-01-07">
-          01-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/07/c++的模运算/" itemprop="url">
-              
-                <span itemprop="name">浅谈c++中取模运算和取余运算</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-07T12:35:00+08:00" content="2019-01-07">
-          01-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>在tensorflow中,有两个scope,一个是name_scope一个是variable_scope,这两个scope到底有什么区别呢?</p>
+<p>先看第一个程序:</p>
+<blockquote>
+<p>with tf.name_scope(“hello”) as name_scope:</p>
+<p>​    arr1 = tf.get_variable(“arr1”, shape=[2,10],dtype=tf.float32)</p>
+<p>​    print (name_scope)</p>
+<p>​    print (arr1.name)</p>
+<p>​    print (“scope_name:%s “%tf.get_variable_scope().original_name_scope)</p>
+</blockquote>
+<p>输出为：</p>
+<blockquote>
+<p>hello/ </p>
+<p>arr1:0 </p>
+<p>scope_name:</p>
+</blockquote>
+<p>可以看出:</p>
+<ul>
+<li>tf.name_scope() 返回的是 一个string,”hello/”</li>
+<li>在name_scope中定义的variable的name并没有“hello/”前缀</li>
+<li>tf.get_variable_scope()的original_name_scope是空</li>
+</ul>
+<p>第二个程序:</p>
+<blockquote>
+<p>with tf.variable_scope(“hello”) as variable_scope:<br>​     arr1 = tf.get_variable(“arr1”, shape=[2, 10], dtype=tf.float32)</p>
+<p>​     print (variable_scope)<br>​     print (variable_scope.name) #打印出变量空间名字<br>​     print (arr1.name)<br>​     print (tf.get_variable_scope().original_name_scope)<br>​     #tf.get_variable_scope() 获取的就是variable_scope</p>
+<p>​    with tf.variable_scope(“xixi”) as v_scope2:<br>​         print (tf.get_variable_scope().original_name_scope)<br>​         #tf.get_variable_scope() 获取的就是v _scope2</p>
+</blockquote>
+<p>输出为:</p>
+<blockquote>
+<p>&lt;tensorflow.python.ops.variable_scope.VariableScope<br>object at<br>0x7fbc09959210&gt;<br>hello<br>hello/arr1:0<br>hello/<br>hello/xixi/</p>
+</blockquote>
+<p>可以看出：</p>
+<ul>
+<li>tf.variable_scope()返回的是一个 op对象</li>
+<li>variable_scope中定义的variable的name加上了”hello/”前缀</li>
+<li>tf.get_variable_scope()的original_name_scope是 嵌套后的scope name</li>
+</ul>
+<p>第三个程序:</p>
+<blockquote>
+<p>with tf.name_scope(“name1”):<br>​     with tf.variable_scope(“var1”):<br>​         w = tf.get_variable(“w”,shape=[2])<br>​         res = tf.add(w,[3])</p>
+<p>print w.name<br> print res.name</p>
+</blockquote>
+<p>输出为：</p>
+<blockquote>
+<p>var1/w:0<br>name1/var1/Add:0</p>
+</blockquote>
+<p>可以看出：variable scope和name scope都会给op的name加上前缀</p>
+<p><strong>对比三个个程序可以看出:</strong></p>
+<ul>
+<li>name_scope对get_variable()创建的变量 的名字不会有任何影响,而创建的op会被加上前缀.</li>
+<li>tf.get_variable_scope()返回的只是 variable_scope,不管name_scope.所以以后我们在使用tf.get_variable_scope().reuse_variables() 时可以无视name_scope</li>
+</ul>
+<p><strong>其它</strong></p>
+<blockquote>
+<p>with<br>tf.name_scope(“scope1”) as scope1:<br>​    with<br>tf.name_scope(“scope2”) as scope2:<br>​        print scope2</p>
+</blockquote>
+<p>输出：</p>
+<blockquote>
+<p>scope1/scope2/</p>
+</blockquote>
+<blockquote>
+<p>import<br>tensorflow as tf<br>with tf.variable_scope(“scope1”) as scope1:<br>​    with<br>tf.variable_scope(“scope2”) as scope2:<br>​        print scope2.name</p>
+</blockquote>
+<p>输出为：</p>
+<blockquote>
+<p>scope1/scope2</p>
+</blockquote>
+<p><strong>name_scope可以用来干什么?</strong></p>
+<p>典型的TensorFlow可以有数以千计的节点，如此多而难以一下全部看到，甚至无法使用标准图表工具来展示。为简单起见，我们为op/tensor名划定范围，并且可视化把该信息用于在图表中的节点上定义一个层级。默认情况下，只有顶层节点会显示。下面这个例子使用tf.name_scope在hidden命名域下定义了三个操作:</p>
+<blockquote>
+<p>import tensorflow as tf</p>
+<p>with tf.name_scope(‘hidden’) as scope:<br>   a = tf.constant(5, name=’alpha’)<br>   W = tf.Variable(tf.random_uniform([1, 2], -1.0, 1.0), name=’weights’)<br>   b = tf.Variable(tf.zeros([1]), name=’biases’)<br>   print (a.name)<br>   print (W.name)<br>   print (b.name)</p>
+</blockquote>
+<p>结果是得到了下面三个操作名:</p>
+<blockquote>
+<p>hidden/alpha :0</p>
+<p>hidden/weights :0</p>
+<p>hidden/biases :0</p>
+</blockquote>
+<p><strong>name_scope 是给op_name加前缀,variable_scope是给get_variable()创建的变量的名字加前缀。</strong></p>
+<p>tf.variable_scope有时也会处理命名冲突</p>
+<blockquote>
+<p>import tensorflow as tf<br> def test(name=None):<br>​     with tf.variable_scope(name, default_name=”scope”) as scope:<br>​         w = tf.get_variable(“w”, shape=[2, 10])</p>
+<p>test()<br> test()<br> ws = tf.trainable_variables()<br> for w in ws:<br>​     print(w.name)</p>
+</blockquote>
+<p>输出：</p>
+<blockquote>
+<p>scope/w:0<br>scope_1/w:0</p>
+</blockquote>
+<p>可以看出，如果只是使用default_name这个属性来创建variable_scope的时候，会处理命名冲突</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>简单来看 </p>
+<ul>
+<li><p>使用tf.Variable()的时候，tf.name_scope()和tf.variable_scope() 都会给 Variable 和 op 的 name属性加上前缀。 </p>
+</li>
+<li><p>使用tf.get_variable()的时候，tf.name_scope()就不会给 tf.get_variable()创建出来的Variable加前缀。</p>
+</li>
+</ul>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>来来来，有钱的捧个钱场，没钱的捧个人场，您的支持就是我更新的动力!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="林贤敏 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/19/slim库/" rel="next" title="slim库">
+                <i class="fa fa-chevron-left"></i> slim库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -416,6 +566,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -436,8 +590,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -515,6 +678,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -688,6 +867,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
