@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVA中配置文件的错误使用]]></title>
+    <url>%2F2019%2F01%2F23%2FJAVA%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[java中的配置文件会自动将等号的右边解析为字符串，所以如果加双引号的话，这个双引号就会被解析为字符串的一部分，这一点一定要注意，否则会引起一些不必要的麻烦。下面记录一下因为这点没注意到而引发的错误。 首先来看一下配置文件里面的内容： 然后运行TestDBCUtils.java就会报错：说找不到这个驱动 错误的原因是：配置文件中的双引号被解析为字符串的一部分了，把配置文件中的双引号去掉问题就解决了]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[junit单元测试使用]]></title>
     <url>%2F2019%2F01%2F22%2Fjunit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[当我们在编写一个大型项目的时候，如果想快速定位到我们需要调试的代码块是一件非常不容易的事情，所以今天就来讲讲junit的使用，可以把它想象成一个main函数，我们想要运行哪一个代码块就运行哪个代码块。 使用右击工程—》Build Path—》Add Libraries—》JUnit 然后在需要运行的函数前面加上@Test并导包： import org.junit.Test;]]></content>
@@ -58,8 +69,8 @@
         <category>c++</category>
       </categories>
       <tags>
-        <tag>c++</tag>
         <tag>java</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
