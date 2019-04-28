@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="junit,">
+  <meta name="keywords" content="spring boot,">
 
 
 
@@ -79,18 +79,23 @@
 
 
 
-<meta name="description" content="当我们在编写一个大型项目的时候，如果想快速定位到我们需要调试的代码块是一件非常不容易的事情，所以今天就来讲讲junit的使用，可以把它想象成一个main函数，我们想要运行哪一个代码块就运行哪个代码块。 使用右击工程—》Build Path—》Add Libraries—》JUnit 然后在需要运行的函数前面加上@Test并导包：  import org.junit.Test;">
-<meta name="keywords" content="junit">
+<meta name="description" content="今天说说如何用IDEA快速入门spring boot 首先按照以下步骤建立一个maven的java web项目  然后完善工程目录如图所示，这里要注意一点接口包controller和启动类startDemo必须在同一个包(我这里是com.iflytek)下面。   配置pom.xml文件 12345&amp;lt;parent&amp;gt;  &amp;lt;groupId&amp;gt;org.springframework">
+<meta name="keywords" content="spring boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="junit单元测试使用">
-<meta property="og:url" content="http://yoursite.com/2019/01/22/junit单元测试使用/index.html">
+<meta property="og:title" content="spring boot入门小案例">
+<meta property="og:url" content="http://yoursite.com/2019/04/28/spring-boot入门小案例/index.html">
 <meta property="og:site_name" content="Technology Space">
-<meta property="og:description" content="当我们在编写一个大型项目的时候，如果想快速定位到我们需要调试的代码块是一件非常不容易的事情，所以今天就来讲讲junit的使用，可以把它想象成一个main函数，我们想要运行哪一个代码块就运行哪个代码块。 使用右击工程—》Build Path—》Add Libraries—》JUnit 然后在需要运行的函数前面加上@Test并导包：  import org.junit.Test;">
+<meta property="og:description" content="今天说说如何用IDEA快速入门spring boot 首先按照以下步骤建立一个maven的java web项目  然后完善工程目录如图所示，这里要注意一点接口包controller和启动类startDemo必须在同一个包(我这里是com.iflytek)下面。   配置pom.xml文件 12345&amp;lt;parent&amp;gt;  &amp;lt;groupId&amp;gt;org.springframework">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-22T11:24:42.577Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/28/EQTK2Q.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/28/EQT3bq.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/28/EQTa24.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/04/28/EQTbi8.jpg">
+<meta property="og:updated_time" content="2019-04-28T11:39:40.205Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="junit单元测试使用">
-<meta name="twitter:description" content="当我们在编写一个大型项目的时候，如果想快速定位到我们需要调试的代码块是一件非常不容易的事情，所以今天就来讲讲junit的使用，可以把它想象成一个main函数，我们想要运行哪一个代码块就运行哪个代码块。 使用右击工程—》Build Path—》Add Libraries—》JUnit 然后在需要运行的函数前面加上@Test并导包：  import org.junit.Test;">
+<meta name="twitter:title" content="spring boot入门小案例">
+<meta name="twitter:description" content="今天说说如何用IDEA快速入门spring boot 首先按照以下步骤建立一个maven的java web项目  然后完善工程目录如图所示，这里要注意一点接口包controller和启动类startDemo必须在同一个包(我这里是com.iflytek)下面。   配置pom.xml文件 12345&amp;lt;parent&amp;gt;  &amp;lt;groupId&amp;gt;org.springframework">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/04/28/EQTK2Q.jpg">
 
 
 
@@ -120,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/22/junit单元测试使用/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/28/spring-boot入门小案例/">
 
 
 
 
 
-  <title>junit单元测试使用 | Technology Space</title>
+  <title>spring boot入门小案例 | Technology Space</title>
   
 
 
@@ -295,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/junit单元测试使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/spring-boot入门小案例/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="林贤敏">
@@ -312,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">junit单元测试使用</h1>
+          <h1 class="post-title" itemprop="name headline">spring boot入门小案例</h1>
         
 
         <div class="post-meta">
@@ -324,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-22T19:16:29+08:00">
-                2019-01-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T19:21:50+08:00">
+                2019-04-28
               </time>
             
 
@@ -389,12 +394,25 @@
       
 
       
-        <p>当我们在编写一个大型项目的时候，如果想快速定位到我们需要调试的代码块是一件非常不容易的事情，所以今天就来讲讲junit的使用，可以把它想象成一个main函数，我们想要运行哪一个代码块就运行哪个代码块。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>右击工程—》Build Path—》Add Libraries—》JUnit</p>
-<p>然后在需要运行的函数前面加上@Test并导包：</p>
-<blockquote>
-<p>import org.junit.Test;</p>
-</blockquote>
+        <h1 id="今天说说如何用IDEA快速入门spring-boot"><a href="#今天说说如何用IDEA快速入门spring-boot" class="headerlink" title="今天说说如何用IDEA快速入门spring boot"></a>今天说说如何用IDEA快速入门spring boot</h1><ol>
+<li><p>首先按照以下步骤建立一个maven的java web项目<img src="https://s2.ax1x.com/2019/04/28/EQTK2Q.jpg" alt="image"><img src="https://s2.ax1x.com/2019/04/28/EQT3bq.jpg" alt="image"><img src="https://s2.ax1x.com/2019/04/28/EQTa24.jpg" alt="image"></p>
+</li>
+<li><p>然后完善工程目录如图所示，这里要注意一点接口包controller和启动类startDemo必须在同一个包(我这里是com.iflytek)下面。</p>
+<p><img src="https://s2.ax1x.com/2019/04/28/EQTbi8.jpg" alt="image"></p>
+</li>
+<li><p>配置pom.xml文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>startDemo.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.iflytek;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">startDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(startDemo.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>test.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.iflytek.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/fun"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello spring boot"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在浏览器端输入地址:<a href="http://localhost:8080/fun" target="_blank" rel="noopener">http://localhost:8080/fun</a></p>
+</li>
+</ol>
 
       
     </div>
@@ -436,7 +454,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/junit/" rel="tag"># junit</a>
+            <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
           
         </div>
       
@@ -449,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/19/tensorflow中name-variable-scope/" rel="next" title="tensorflow中name&variable_scope">
-                <i class="fa fa-chevron-left"></i> tensorflow中name&variable_scope
+              <a href="/2019/01/23/JAVA中配置文件的错误使用/" rel="next" title="JAVA中配置文件的错误使用">
+                <i class="fa fa-chevron-left"></i> JAVA中配置文件的错误使用
               </a>
             
           </div>
@@ -458,10 +476,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/23/JAVA中配置文件的错误使用/" rel="prev" title="JAVA中配置文件的错误使用">
-                JAVA中配置文件的错误使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -611,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">1.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#今天说说如何用IDEA快速入门spring-boot"><span class="nav-number">1.</span> <span class="nav-text">今天说说如何用IDEA快速入门spring boot</span></a></li></ol></div>
             
 
           </div>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[spring boot入门小案例]]></title>
+    <url>%2F2019%2F04%2F28%2Fspring-boot%E5%85%A5%E9%97%A8%E5%B0%8F%E6%A1%88%E4%BE%8B%2F</url>
+    <content type="text"><![CDATA[今天说说如何用IDEA快速入门spring boot 首先按照以下步骤建立一个maven的java web项目 然后完善工程目录如图所示，这里要注意一点接口包controller和启动类startDemo必须在同一个包(我这里是com.iflytek)下面。 配置pom.xml文件 12345&lt;parent&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;&lt;/parent&gt; 1234&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;&lt;/dependency&gt; startDemo.java 1234567891011package com.iflytek;import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;@SpringBootApplicationpublic class startDemo &#123; public static void main(String[] args) &#123; SpringApplication.run(startDemo.class,args); &#125;&#125; test.java 123456789101112package com.iflytek.controller;import org.springframework.web.bind.annotation.RequestMapping;import org.springframework.web.bind.annotation.RestController;@RestControllerpublic class test &#123; @RequestMapping("/fun") public String fun()&#123; return "hello spring boot"; &#125;&#125; 在浏览器端输入地址:http://localhost:8080/fun]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>spring boot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVA中配置文件的错误使用]]></title>
     <url>%2F2019%2F01%2F23%2FJAVA%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[java中的配置文件会自动将等号的右边解析为字符串，所以如果加双引号的话，这个双引号就会被解析为字符串的一部分，这一点一定要注意，否则会引起一些不必要的麻烦。下面记录一下因为这点没注意到而引发的错误。 首先来看一下配置文件里面的内容： 然后运行TestDBCUtils.java就会报错：说找不到这个驱动 错误的原因是：配置文件中的双引号被解析为字符串的一部分了，把配置文件中的双引号去掉问题就解决了]]></content>
