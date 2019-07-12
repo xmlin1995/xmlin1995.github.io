@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[docker 安装MySQL远程连接]]></title>
+    <url>%2F2019%2F07%2F12%2Fdocker-%E5%AE%89%E8%A3%85MySQL%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%2F</url>
+    <content type="text"><![CDATA[docker 安装mysql远程连接1.下载Mysql的Docker镜像： ​ docker search mysql (搜索mysql镜像) ​ docker pull mysql （下载mysql镜像，默认最新版本） 运行镜像，设置root账号初始密码（123456 ），映射本地宿主机端口3306到Docker端口3306。测试过程没有挂载本地数据盘： docker run -it –rm –name mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql 查看已运行的容器： docker ps -a 进入mysql容器： docker exec -it mysql bash 在容器内登陆Mysql: mysql -uroot -p123456 查看用户信息 select host,user,plugin,authentication_string from mysql.user; 解决navicat远程连接mysql时的错误：can’t connect to mysql server on ‘192.168.247.128’ ALTER user ‘root‘@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IDEA+Maven+JavaWeb+tomcat项目搭建（图文并茂，详细）]]></title>
     <url>%2F2019%2F05%2F07%2F%C2%96IDEA-Maven-JavaWeb-tomcat%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%EF%BC%8C%E8%AF%A6%E7%BB%86%EF%BC%89%2F</url>
     <content type="text"><![CDATA[前言:网上有很多idea+maven+web+tomcat部署的例子，可是基本都不是完整详细的，对于习惯了Eclipse的同学，突然换idea还是需要点时间适应的，这个过程简单但也是痛苦的，为了使更多的初学者不走弯路，下面给大家列一份详细的步骤，并全部以截图展示一、创建Maven项目1:如果刚打开IDEA,显示的是这个页面，我们直接单击 Create New Project（创建项目） 或者 File—&gt; New—&gt; Project 2:选中左侧的Maven –&gt; 右侧选则你的jdk –&gt; 勾选Create from archetype –&gt;再选择maven-archetype-webapp –&gt; 选好后再选择Next 3: 因为是maven项目，所以需要项目的Groupid, ArtifactId, Version 这是Maven项目的坐标，必填.GroupId:实际对应JAVA的包的结构，是main目录里java的目录结构。ArtifactID:就是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。 4:选择本地maven安装路径，正常情况下其他参数不用修改，但是这样会比较慢，有时候如果网速不好，就会卡的比较久，这是因为maven这个骨架会从远程仓库加载archetype元数据，但是archetype又比较多，所以比较卡，这时候可以加个属性 archetypeCatelog = internal，表示仅使用内部元数据，点击右边的蓝色“+”号 5:输入Project name，输入project name 后，我们会发现下面的Module name跟上面一样，但有时候我们的项目比较大，会分好几个module，这时候可以输入自己的module name，当然也可以不改，则 module name 和 project name一样,这里我把module name改为了”api”。 6:单击Finish， 项目会去配置的仓库中下载对应的构件和依赖. 7:这时候已经完成大部分了，不过我们还需要新建几个目录文件，因为maven项目的文件结构是 src-main-Java / resources，src-test-java/resources，但骨架只自带了resources，所以需要我们手动添加文件目录。如果不知道具体怎么操作，详见：https://blog.csdn.net/weixin_33446857/article/details/82155633 最终结构如下图： 二、配置Tomcat1:在主页面打开ProjectStructure, File –&gt;Project Struture添加web选项，表明是一个web项目. 2:打开ProjectStructure后，按照图示依次点击Facets-&gt;+号,在弹出的对话框个中选择Web. 3:在弹出的对话框选择刚才创建的Maven项目（api），点击ok. 4:这里 点击Create artifact，创建web项目导出配置 5:点击Create artifact后，会自动跳到Artifacts标签。 6:选中Modules标签，点击+号，添加一个文件路径，指向你项目的webapp目录 7 :单击OK 8:给项目添加Tomcat 服务器 run –&gt; Edit Configurtions… 9:点击+号，选择Tomcat Server –&gt; Local 10:选中Server选项卡，Name这里可以写tomcat的名字，也可以不改，使用默认的。端口号默认是8080，根据自身需要是否更改，这里我未做更改。 11:选中Deployment选项卡，点击+号，点击Artifact,最后点击ok,完成。 12:启动Tomcat 13:浏览器输入 localhost:8080 大功告成]]></content>
@@ -110,8 +118,8 @@
         <category>c++</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>c++</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
