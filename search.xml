@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[docker 安装MySQL远程连接]]></title>
     <url>%2F2019%2F07%2F12%2Fdocker-%E5%AE%89%E8%A3%85MySQL%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%2F</url>
-    <content type="text"><![CDATA[docker 安装mysql远程连接1.下载Mysql的Docker镜像： ​ docker search mysql (搜索mysql镜像) ​ docker pull mysql （下载mysql镜像，默认最新版本） 运行镜像，设置root账号初始密码（123456 ），映射本地宿主机端口3306到Docker端口3306。测试过程没有挂载本地数据盘： docker run -it –rm –name mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql 查看已运行的容器： docker ps -a 进入mysql容器： docker exec -it mysql bash 在容器内登陆Mysql: mysql -uroot -p123456 查看用户信息 select host,user,plugin,authentication_string from mysql.user; 解决navicat远程连接mysql时的错误：can’t connect to mysql server on ‘192.168.247.128’ ALTER user ‘root‘@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;]]></content>
+    <content type="text"><![CDATA[docker 安装mysql远程连接1.下载Mysql的Docker镜像： ​ docker search mysql (搜索mysql镜像) ​ docker pull mysql （下载mysql镜像，默认最新版本） 运行镜像，设置root账号初始密码（123456 ），映射本地宿主机端口3306到Docker端口3306。测试过程没有挂载本地数据盘： docker run -di –name mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql //–name给容器起的名字 最后的mysql是镜像的名字 查看已运行的容器： docker ps -a 进入mysql容器： docker exec -it mysql bash 在容器内登陆Mysql: mysql -uroot -p123456 查看用户信息 select host,user,plugin,authentication_string from mysql.user; 解决navicat远程连接mysql时的错误：can’t connect to mysql server on ‘192.168.247.128’ ALTER user ‘root‘@’%’ IDENTIFIED WITH mysql_native_password BY ‘123456’;]]></content>
       <tags>
         <tag>docker</tag>
       </tags>
@@ -118,8 +118,8 @@
         <category>c++</category>
       </categories>
       <tags>
-        <tag>c++</tag>
         <tag>java</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>

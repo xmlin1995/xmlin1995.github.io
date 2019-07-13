@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/12/ZfkSU0.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2019/07/12/ZfkmUx.jpg">
-<meta property="og:updated_time" content="2019-07-12T09:05:52.849Z">
+<meta property="og:updated_time" content="2019-07-13T02:07:09.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker 安装MySQL远程连接">
 <meta name="twitter:description" content="docker 安装mysql远程连接1.下载Mysql的Docker镜像： ​    docker search mysql (搜索mysql镜像)  ​    docker pull mysql （下载mysql镜像，默认最新版本）    运行镜像，设置root账号初始密码（123456 ），映射本地宿主机端口3306到Docker端口3306。测试过程没有挂载本地数据盘： docker run">
@@ -365,7 +365,8 @@
 <p>​    docker pull mysql （下载mysql镜像，默认最新版本）  </p>
 <ol start="2">
 <li><p>运行镜像，设置root账号初始密码（123456 ），映射本地宿主机端口3306到Docker端口3306。测试过程没有挂载本地数据盘：</p>
-<p>docker run -it –rm –name mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql</p>
+<p>docker run -di –name mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  mysql</p>
+<p>//–name给容器起的名字    最后的mysql是镜像的名字</p>
 </li>
 <li><p>查看已运行的容器：</p>
 <p>docker ps -a </p>
